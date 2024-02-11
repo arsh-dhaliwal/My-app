@@ -1,0 +1,121 @@
+// src/renderer/styles/theme.scss
+
+// Define the color palette for the application
+$color-dark: #363636;
+$color-blue-accent: #3273dc;
+$color-green-status: #23d160;
+$color-yellow-status: #ffdd57;
+$color-red-status: #ff3860;
+
+// Define the base theme styles
+$background-base: $color-dark;
+$text-color: #f5f5f5;
+$border-radius-base: 4px;
+
+// Define alert status colors
+$alert-color-good: $color-green-status;
+$alert-color-warning: $color-yellow-status;
+$alert-color-critical: $color-red-status;
+
+// Apply the theme to the body and common elements
+body {
+  background-color: $background-base;
+  color: $text-color;
+  font-family: 'Open Sans', sans-serif;
+}
+
+// Navigation bar styling
+#nav-bar {
+  background-color: darken($background-base, 5%);
+  border-right: 1px solid lighten($background-base, 10%);
+}
+
+// Logo styling
+#logo {
+  fill: $color-blue-accent;
+}
+
+// Dashboard styling
+#dashboard {
+  background-color: lighten($background-base, 5%);
+}
+
+// Settings page styling
+#settings {
+  background-color: lighten($background-base, 5%);
+}
+
+// DAQ Configuration page styling
+#daq-config {
+  background-color: lighten($background-base, 5%);
+}
+
+// Alerts and Alarms page styling
+#alerts-alarms {
+  background-color: lighten($background-base, 5%);
+}
+
+// Form elements styling
+input, select, button {
+  border-radius: $border-radius-base;
+}
+
+// Alert status indicators
+.alert-status-good {
+  color: $alert-color-good;
+}
+
+.alert-status-warning {
+  color: $alert-color-warning;
+}
+
+.alert-status-critical {
+  color: $alert-color-critical;
+}
+
+// Toggle buttons for temperature unit
+.toggle-temp-unit {
+  background-color: $color-blue-accent;
+  color: $text-color;
+}
+
+// Chart styling
+.chart-container {
+  background-color: lighten($background-base, 10%);
+  border-radius: $border-radius-base;
+}
+
+// Polar Trend Plot styling
+.polar-trend-plot {
+  background-color: lighten($background-base, 10%);
+  border-radius: $border-radius-base;
+}
+
+// Historic Trend Plot styling
+.historic-trend-plot {
+  background-color: lighten($background-base, 10%);
+  border-radius: $border-radius-base;
+}
+
+// Apply theme to custom components
+.card {
+  background-color: lighten($background-base, 5%);
+  border-radius: $border-radius-base;
+}
+
+// Utility classes for text and background colors
+.text-primary {
+  color: $color-blue-accent;
+}
+
+.bg-primary {
+  background-color: $color-blue-accent;
+}
+
+// Extensive commenting for maintainability
+// Use this section to override any specific component styles or add new styles as needed
+// For example, to change the background color of a specific page or component, add the corresponding class and styles here
+
+// .specific-component {
+//   background-color: #your-color;
+// }

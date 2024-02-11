@@ -1,0 +1,50 @@
+{
+  "name": "ThermWatch",
+  "version": "1.0.0",
+  "description": "A temperature monitoring solution for high value assets located inside plants.",
+  "main": "src/background.js",
+  "scripts": {
+    "dev": "electron-dev",
+    "build": "electron-build",
+    "start": "electron ."
+  },
+  "dependencies": {
+    "vue": "^3.0.0",
+    "vuex": "^4.0.0",
+    "vue-router": "^4.0.0",
+    "electron": "^15.0.0",
+    "better-sqlite3": "^7.4.0",
+    "bulma": "^0.9.3",
+    "node-modbus": "^5.2.0",
+    "mqtt": "^4.2.6"
+  },
+  "devDependencies": {
+    "vite": "^2.6.4",
+    "electron-builder": "^22.11.7",
+    "sass": "^1.32.8",
+    "vite-plugin-vue2": "^1.6.2"
+  },
+  "build": {
+    "appId": "com.thermwatch.app",
+    "productName": "ThermWatch",
+    "directories": {
+      "output": "build"
+    },
+    "files": [
+      "dist/electron/**/*",
+      "node_modules/**/*",
+      "package.json"
+    ],
+    "win": {
+      "icon": "public/electron-icon.png"
+    },
+    "mac": {
+      "icon": "public/electron-icon.icns"
+    },
+    "linux": {
+      "icon": "public/electron-icon.png"
+    }
+  },
+  "author": "Your Company Name",
+  "license": "SEE LICENSE IN LICENSE"
+}
