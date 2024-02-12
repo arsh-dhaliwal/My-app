@@ -13,7 +13,7 @@ const checkTemperatureThreshold = async (sensorId, threshold) => {
     if (sensorData && sensorData.currentTemperature >= threshold) {
       // Trigger red alert
       sendNotification('Temperature Alert', `Temperature for sensor ${sensorData.sensorName} exceeds the threshold!`);
-      sendEmailAlert(sensorData);
+      sendEmailAlert(sensorData.email, `Temperature Alert - Sensor ${sensorData.id}`, `Current temperature: ${sensorData.currentTemperature} exceeded the threshold!`);
       return alarmStatusColors.red;
     }
     return alarmStatusColors.green;
