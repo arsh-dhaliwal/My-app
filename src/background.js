@@ -1,7 +1,7 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
 const { initializeDatabase } = require('./db/initDb');
-const { manageLicense } = require('./utils/licenseManager');
+const LicenseManager = require('./renderer/utils/licenseManager');
 
 let mainWindow;
 
@@ -31,7 +31,11 @@ function createWindow() {
 }
 
 app.on('ready', async () => {
-  manageLicense();
+  const licenseManager = new LicenseManager();
+  if (!licenseManager.validateLicense()) {
+    console.error('License validation failed');
+    app.quit();
+  }
   await initializeDatabase();
   createWindow();
 });
