@@ -1,35 +1,15 @@
-const { DataTypes } = require('sequelize');
 const db = require('../initDb.js');
 
-const Asset = db.define('Asset', {
-  assetName: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  plantId: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    references: {
-      model: 'Plants',
-      key: 'id'
-    }
-  },
-  capacity: {
-    type: DataTypes.FLOAT,
-    allowNull: true
-  },
-  rating: {
-    type: DataTypes.FLOAT,
-    allowNull: true
-  },
-  temperatureThreshold: {
-    type: DataTypes.FLOAT,
-    allowNull: false
-  }
-}, {
-  // Other model options go here
-  timestamps: true, // Adds createdAt and updatedAt timestamps
-  tableName: 'Assets' // Define the table's name
-});
+db.prepare(`CREATE TABLE IF NOT EXISTS Assets (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  assetName TEXT NOT NULL,
+  plantId INTEGER NOT NULL,
+  capacity REAL,
+  rating REAL,
+  temperatureThreshold REAL NOT NULL,
+  createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+  updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY(plantId) REFERENCES Plants(id)
+)`).run();
 
 module.exports = Asset;
