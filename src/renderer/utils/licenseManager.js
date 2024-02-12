@@ -47,5 +47,5 @@ class LicenseManager {
 }
 
 // Export an instance of the LicenseManager
-module.exports = LicenseManager;
+module.exports = new LicenseManager();
 ```
