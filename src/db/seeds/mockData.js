@@ -1,8 +1,9 @@
-const { Company, Plant, Asset, Sensor } = require('../models');
+const db = require('../initDb');
 
 async function generateMockData() {
   // Create mock company data
-  const mockCompany = await Company.create({
+  const insertCompany = db.prepare('INSERT INTO Companies (companyName, address, city, state, country, zipCode, phoneNumber, email) VALUES (?, ?, ?, ?, ?, ?, ?, ?)');
+  const mockCompany = insertCompany.run('ThermoCo', '123 Industrial Way', 'Techville', 'Innovate', 'Techland', '12345', '123-456-7890', 'contact@thermoco.com');
     companyName: 'ThermoCo',
     address: '123 Industrial Way',
     city: 'Techville',
@@ -14,7 +15,8 @@ async function generateMockData() {
   });
 
   // Create mock plant data
-  const mockPlant = await Plant.create({
+  const insertPlant = db.prepare('INSERT INTO Plants (plantName, address, city, state, country, zipCode, phoneNumber, email, companyId) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)');
+  const mockPlant = insertPlant.run('Main Plant', '456 Production Road', 'Techville', 'Innovate', 'Techland', '12345', '123-456-7891', 'plant@thermoco.com', mockCompany.lastInsertRowid);
     plantName: 'Main Plant',
     address: '456 Production Road',
     city: 'Techville',
@@ -28,6 +30,7 @@ async function generateMockData() {
 
   // Create mock asset data
   const mockAsset = await Asset.create({
+  const mockAsset = insertAsset.run('Reactor 1', mockPlant.lastInsertRowid, 5000, 'A', 100);
     assetName: 'Reactor 1',
     plantId: mockPlant.id,
     capacity: '5000',
@@ -36,7 +39,8 @@ async function generateMockData() {
   });
 
   // Create mock sensor data
-  const mockSensor = await Sensor.create({
+  const insertSensor = db.prepare('INSERT INTO Sensors (sensorName, sensorFamily, sensorType, sensorVariant, assetId, position) VALUES (?, ?, ?, ?, ?, ?)');
+  const mockSensor = insertSensor.run('TempSensor 1', 'ThermoSensors', 'Temperature', 'A1', mockAsset.lastInsertRowid, 1);
     sensorName: 'TempSensor 1',
     sensorFamily: 'ThermoSensors',
     sensorType: 'Temperature',
@@ -55,8 +59,8 @@ async function generateMockData() {
       temperature: Math.random() * 100, // Random temperature for demonstration
       status: 'good' // Default status
     };
-    // Here you would save the mockTemperatureData to the database
-    // For example: await TemperatureData.create(mockTemperatureData);
+    const insertTemperatureData = db.prepare('INSERT INTO TemperatureData (sensorId, date, temperature, status) VALUES (?, ?, ?, ?)');
+    insertTemperatureData.run(mockSensor.lastInsertRowid, date.toISOString().split('T')[0], Math.random() * 100, 'good');
   }
 }
 
