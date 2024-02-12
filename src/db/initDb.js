@@ -1,5 +1,5 @@
 const path = require('path');
-const { open } = require('better-sqlite3');
+const Database = require('better-sqlite3');
 
 const Company = require('./models/company');
 const Plant = require('./models/plant');
@@ -9,7 +9,7 @@ const Sensor = require('./models/sensor');
 const dbPath = path.join(__dirname, '..', 'db', 'thermwatch.tmdb');
 
 function initializeDatabase() {
-  const db = open(dbPath, { verbose: console.log });
+  const db = new Database(dbPath, { verbose: console.log });
 
   // Create tables if they do not exist
   db.exec(`
