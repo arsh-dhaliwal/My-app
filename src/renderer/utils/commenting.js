@@ -8,7 +8,7 @@
  * Adds a header comment to a file.
  * @param {string} filename - The name of the file.
  * @param {string} description - A brief description of the file's purpose.
- * @returns {string} - The header comment.
+ * @returns {string} - The file header comment.
  */
 function addFileHeaderComment(filename, description) {
   return `/**
@@ -24,11 +24,11 @@ function addFileHeaderComment(filename, description) {
 
 /**
  * Adds a function comment.
- * @param {string} functionName - The name of the function.
- * @param {string} description - A brief description of the function's purpose.
+ * @param {string} name - The name of the function.
+ * @param {string} desc - A brief description of the function's purpose.
  * @param {Object[]} params - An array of parameters the function takes.
  * @param {string} returns - The description of the return value.
- * @returns {string} - The function comment.
+ * @returns {string} - The comment for the function.
  */
 function addFunctionComment(functionName, description, params, returns) {
   const paramsComments = params.map(param => ` * @param {${param.type}} ${param.name} - ${param.description}`).join('\n');
@@ -45,9 +45,9 @@ ${paramsComments}
 
 /**
  * Adds a class comment.
- * @param {string} className - The name of the class.
- * @param {string} description - A brief description of the class's purpose.
- * @returns {string} - The class comment.
+ * @param {string} name - The name of the class.
+ * @param {string} desc - A brief description of the class's purpose.
+ * @returns {string} - The comment for the class.
  */
 function addClassComment(className, description) {
   return `/**
