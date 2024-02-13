@@ -1,6 +1,5 @@
 const path = require('path');
 const { initializeDatabase } = require('..\/db\/initDb');
-const jest = require('jest');
 const eslint = require('eslint');
 
 const eslintConfig = {
