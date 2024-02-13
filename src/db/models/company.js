@@ -1,4 +1,5 @@
-const db = require('better-sqlite3');
+const { DataTypes } = require('sequelize');
+const db = require('../initDb.js');
 const db = require('../initDb.js');
 
 const Company = db.define('Company', {
