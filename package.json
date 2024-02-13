@@ -1,6 +1,6 @@
 {
-  "name": "ThermWatch",
-  "version": "1.0.0",
+  "name": "thermwatch",
+  "version": "1.1.0",
   "description": "A temperature monitoring solution for high value assets located inside plants.",
   "main": "src/background.js",
   "scripts": {
@@ -29,6 +29,10 @@
     "productName": "ThermWatch",
     "directories": {
       "output": "build"
+          "vite": "^2.7.0",
+      "electron-builder": "^22.11.8",
+      "sass": "^1.42.1",
+      "vite-plugin-vue2": "^1.7.0"
     },
     "files": [
       "dist/electron/**/*",
@@ -40,7 +44,8 @@
     },
     "mac": {
       "icon": "public/electron-icon.icns"
-    },
+          "axios": "^0.26.0",
+        "jest": "^27.3.1",,
     "linux": {
       "icon": "public/electron-icon.png"
     }
