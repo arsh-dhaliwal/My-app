@@ -1,8 +1,19 @@
-const { DataTypes } = require('sequelize');
-const db = require('../initDb.js');
+const Database = require('better-sqlite3');
 const db = require('../initDb.js');
 
-const Company = db.define('Company', {
+const Company = db.prepare(`CREATE TABLE IF NOT EXISTS Companies (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  companyName TEXT NOT NULL,
+  address TEXT NOT NULL,
+  city TEXT NOT NULL,
+  state TEXT NOT NULL,
+  country TEXT NOT NULL,
+  zipCode TEXT NOT NULL,
+  phoneNumber TEXT NOT NULL,
+  email TEXT NOT NULL,
+  createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+  updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP
+)`).run()('Company', {
   companyName: {
     type: DataTypes.STRING,
     allowNull: false
