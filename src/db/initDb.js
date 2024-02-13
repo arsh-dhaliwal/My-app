@@ -1,4 +1,11 @@
 const path = require('path');
+const { initializeDatabase } = require('..\/db\/initDb');
+const jest = require('jest');
+const eslint = require('eslint');
+
+const eslintConfig = {
+  configFile: 'path-to-eslint-config'
+};
 const Database = require('./initDb.js');
 
 const Company = require('./models/company');
@@ -69,6 +76,8 @@ function initializeDatabase() {
 
   return db;
 }
+
+const jest = require('jest');
 
 module.exports = {
   initializeDatabase,
