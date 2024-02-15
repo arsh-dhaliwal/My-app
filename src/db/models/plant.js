@@ -1,45 +1,19 @@
-const { DataTypes } = require('sequelize');
 const db = require('../initDb.js');
 
-const Plant = db.define('Plant', {
-  plantName: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  address: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  city: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  state: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  country: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  zipCode: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  phoneNumber: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  email: {
-    type: DataTypes.STRING,
-    allowNull: false,
-    validate: {
-      isEmail: true
-    }
-  }
-}, {
-  // Other model options go here
-  timestamps: false, // Disable the timestamps for this model
-});
+db.prepare(`CREATE TABLE IF NOT EXISTS Plants (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  plantName TEXT NOT NULL,
+  address TEXT NOT NULL,
+  city TEXT NOT NULL,
+  state TEXT NOT NULL,
+  country TEXT NOT NULL,
+  zipCode TEXT NOT NULL,
+  phoneNumber TEXT NOT NULL,
+  email TEXT NOT NULL,
+  companyId INTEGER NOT NULL,
+  createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+  updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY(companyId) REFERENCES Companies(id)
+)`).run();
 
 module.exports = Plant;
