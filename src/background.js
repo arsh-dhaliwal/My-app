@@ -1,6 +1,6 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
-const { initializeDatabase } = require('./db/initDb');
+const { db } = require('./db/initDb');
 const licenseManager = require('./renderer/utils/licenseManager');
 
 let mainWindow;
